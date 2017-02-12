@@ -1,4 +1,4 @@
-package me.puneetghodasara.validation.exception;
+package me.puneetghodasara.boot.exception;
 
 import java.util.List;
 

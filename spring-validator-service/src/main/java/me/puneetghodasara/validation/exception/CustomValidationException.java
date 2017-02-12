@@ -12,6 +12,8 @@ import javax.ws.rs.ext.Provider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import me.puneetghodasara.boot.exception.CustomException;
+
 @Provider
 public class CustomValidationException implements ExceptionMapper<ConstraintViolationException> {
 

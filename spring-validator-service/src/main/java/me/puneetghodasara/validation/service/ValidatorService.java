@@ -1,4 +1,4 @@
-package me.puneetghodasara.validation.business;
+package me.puneetghodasara.validation.service;
 
 import java.util.List;
 

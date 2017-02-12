@@ -7,9 +7,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
+import me.puneetghodasara.boot.exception.CustomException;
 import me.puneetghodasara.validation.business.TemperatureService;
-import me.puneetghodasara.validation.business.ValidatorService;
-import me.puneetghodasara.validation.exception.CustomException;
 import me.puneetghodasara.validation.model.Room;
 import me.puneetghodasara.validation.model.Temperature;
 import me.puneetghodasara.validation.persistence.RoomRepository;

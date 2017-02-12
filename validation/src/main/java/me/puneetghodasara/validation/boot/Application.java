@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@SpringBootApplication(scanBasePackages = { "me.puneetghodasara.java" })
+@SpringBootApplication(scanBasePackages = { "me.puneetghodasara.validation" })
 @EnableWebMvc
-@EnableJpaRepositories(basePackages = { "me.puneetghodasara.java.persistence" })
-@EntityScan(basePackages = { "me.puneetghodasara.java.model" })
+@EnableJpaRepositories(basePackages = { "me.puneetghodasara.validation.persistence" })
+@EntityScan(basePackages = { "me.puneetghodasara.validation.model" })
 public abstract class Application {
 
 	public static void main(String[] args) {

@@ -8,32 +8,34 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>spring-validation-service</artifactId>
-	<name>Object Validation Service</name>
+	<artifactId>student-db-service</artifactId>
+	<name>Student DB Service</name>
 
 	<dependencies>
+		<!-- Starter is always needed -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>provided</scope>
+		</dependency>
+		<!-- DATA JPA is always needed -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot</artifactId>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>1.1.0.FINAL</version>
-		</dependency>
-		<dependency>
-			<groupId>me.puneetghodasara.java</groupId>
-			<artifactId>jersey-boot-runner</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jersey</artifactId>
-			<scope>provided</scope>
-		</dependency>
+
 	</dependencies>
 
 </project>

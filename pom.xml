@@ -30,6 +30,9 @@
 	<modules>
 		<module>jersey-boot-runner</module>
 		<module>spring-validator-service</module>
+		<module>student-db-service</module>
+		<module>student-rest-service</module>
+		<module>cache-example</module>
 		<module>validation-example</module>
 	</modules>
 </project>

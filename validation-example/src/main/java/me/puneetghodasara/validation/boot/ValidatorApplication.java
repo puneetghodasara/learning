@@ -10,10 +10,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @EnableJpaRepositories(basePackages = { "me.puneetghodasara.validation.persistence" })
 @EntityScan(basePackages = { "me.puneetghodasara.validation.model" })
-public abstract class Application {
+public abstract class ValidatorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(ValidatorApplication.class, args);
 	}
 
 	// @Bean

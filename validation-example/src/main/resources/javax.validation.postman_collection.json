@@ -10,7 +10,7 @@
 		{
 			"name": "List Rooms",
 			"request": {
-				"url": "http://localhost:8080/room",
+				"url": "http://localhost:8080/api/room",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -19,9 +19,25 @@
 			"response": []
 		},
 		{
-			"name": "Create Room 1",
+			"name": "ID out of Range Negative",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"ID out of range\"] = jsonData.PROBLEMS[0] === \"Room ID must be between 1 and 99\";",
+							"",
+							"tests[\"Status code is 500\"] = responseCode.code === 500;",
+							"",
+							""
+						]
+					}
+				}
+			],
 			"request": {
-				"url": "http://localhost:8080/room",
+				"url": "http://localhost:8080/api/room",
 				"method": "POST",
 				"header": [
 					{
@@ -32,16 +48,32 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\" : 2,\r\n    \"name\": \"Living Room\",\r\n  \t\"register\" : \"2016-11-23T10:10:10+05:30\",\r\n  \t\"unique\" : \"L_ROOM\"\r\n}"
+					"raw": "{\r\n\t\"id\" : -1,\r\n    \"name\": \"Living Room\",\r\n  \t\"register\" : \"2016-11-23T10:10:10+05:30\",\r\n  \t\"unique\" : \"L_ROOM\"\r\n}"
 				},
 				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "Create Room 2",
+			"name": "ID out of Range Over 100",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"ID out of range\"] = jsonData.PROBLEMS[0] === \"Room ID must be between 1 and 99\";",
+							"",
+							"tests[\"Status code is 500\"] = responseCode.code === 500;",
+							"",
+							""
+						]
+					}
+				}
+			],
 			"request": {
-				"url": "http://localhost:8080/room",
+				"url": "http://localhost:8080/api/room",
 				"method": "POST",
 				"header": [
 					{
@@ -52,16 +84,242 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\" : 12,\r\n    \"name\": \"Living Room\",\r\n  \t\"register\" : \"2016-11-23T10:10:10+05:30\",\r\n  \t\"unique\" : \"L_ROOM\",\r\n  \t\"equipments\" : [\r\n  \t\t{\r\n  \t\t\t\"id\" : 2,\r\n  \t\t\t\"name\" : \"Bulb 1\"\r\n  \t\t},\r\n  \t\t{\r\n  \t\t\t\"id\" : 3,\r\n  \t\t\t\"name\" : \"Bulb 2\"\r\n  \t\t}\r\n  \t]\r\n}"
+					"raw": "{\r\n\t\"id\" : 100,\r\n    \"name\": \"Living Room\",\r\n  \t\"register\" : \"2016-11-23T10:10:10+05:30\",\r\n  \t\"unique\" : \"L_ROOM\"\r\n}"
 				},
 				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "Set Temperature 1",
+			"name": "Invalid Unique ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"ID out of range\"] = jsonData.PROBLEMS[0] === \"Invalid Unique ID\";",
+							"",
+							"tests[\"Status code is 500\"] = responseCode.code === 500;",
+							"",
+							""
+						]
+					}
+				}
+			],
 			"request": {
-				"url": "http://localhost:8080/room/2/temp/20",
+				"url": "http://localhost:8080/api/room",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\" : 20,\r\n    \"name\": \"Living Room\",\r\n  \t\"register\" : \"2016-11-23T10:10:10+05:30\",\r\n  \t\"unique\" : \"Living_ROOM-99\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid Register Date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"ID out of range\"] = jsonData.PROBLEMS[0] === \"Date must be in past\";",
+							"",
+							"tests[\"Status code is 500\"] = responseCode.code === 500;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/api/room",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\" : 20,\r\n    \"name\": \"Living Room\",\r\n  \t\"register\" : \"2026-11-23T10:10:10+05:30\",\r\n  \t\"unique\" : \"Living_ROOM_99\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Overloaded Equipments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"ID out of range\"] = jsonData.PROBLEMS[0] === \"size must be between 0 and 3\";",
+							"",
+							"tests[\"Status code is 500\"] = responseCode.code === 500;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/api/room",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\" : 2,\r\n    \"name\": \"Living Room\",\r\n  \t\"register\" : \"2016-11-23T10:10:10+05:30\",\r\n  \t\"unique\" : \"Living_ROOM_99\",\r\n  \t\"equipments\" : [\r\n  \t\t{\r\n  \t\t\t\"id\" : 2,\r\n  \t\t\t\"name\" : \"Bulb 1\"\r\n  \t\t},\r\n  \t\t{\r\n  \t\t\t\"id\" : 3,\r\n  \t\t\t\"name\" : \"Bulb 2\"\r\n  \t\t},\r\n  \t\t{\r\n  \t\t\t\"id\" : 4,\r\n  \t\t\t\"name\" : \"Bulb 4\"\r\n  \t\t},\r\n  \t\t{\r\n  \t\t\t\"id\" : 5,\r\n  \t\t\t\"name\" : \"Bulb 5\"\r\n  \t\t}\r\n  \t]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Duplicate Equipment ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"ID out of range\"] = jsonData.PROBLEMS[0] === \"Values of field id are not unique across collection.\";",
+							"",
+							"tests[\"Status code is 500\"] = responseCode.code === 500;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/api/room",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\" : 2,\r\n    \"name\": \"Living Room\",\r\n  \t\"register\" : \"2016-11-23T10:10:10+05:30\",\r\n  \t\"unique\" : \"Living_ROOM_99\",\r\n  \t\"equipments\" : [\r\n  \t\t{\r\n  \t\t\t\"id\" : 2,\r\n  \t\t\t\"name\" : \"Bulb 1\"\r\n  \t\t},\r\n  \t\t{\r\n  \t\t\t\"id\" : 2,\r\n  \t\t\t\"name\" : \"Bulb 2\"\r\n  \t\t}\r\n  \t]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Correct Room",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/api/room",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\" : 2,\r\n    \"name\": \"Living Room\",\r\n  \t\"register\" : \"2016-11-23T10:10:10+05:30\",\r\n  \t\"unique\" : \"L_ROOM\",\r\n  \t\"equipments\" : [\r\n  \t\t{\r\n  \t\t\t\"id\" : 2,\r\n  \t\t\t\"name\" : \"Bulb 1\"\r\n  \t\t},\r\n  \t\t{\r\n  \t\t\t\"id\" : 3,\r\n  \t\t\t\"name\" : \"Bulb 2\"\r\n  \t\t}\r\n  \t]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Low Temerature Error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"ID out of range\"] = jsonData.PROBLEMS[0] === \"Temperature can not be set lower than 10 in winter.\";",
+							"",
+							"tests[\"Status code is 500\"] = responseCode.code === 500;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/api/room/2/temp/9",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Correct Temperature",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 204\"] = responseCode.code === 204;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/api/room/2/temp/19",
 				"method": "POST",
 				"header": [
 					{

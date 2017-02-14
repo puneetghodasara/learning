@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 import me.puneetghodasara.boot.exception.CustomException;
 import me.puneetghodasara.validation.business.TemperatureService;
 import me.puneetghodasara.validation.model.Room;
-import me.puneetghodasara.validation.model.Temperature;
 import me.puneetghodasara.validation.persistence.RoomRepository;
+import me.puneetghodasara.validation.validator.Temperature;
 
 /**
  * 
@@ -22,9 +22,6 @@ import me.puneetghodasara.validation.persistence.RoomRepository;
 public class RegistrationEndpointImpl implements RegistrationEndpoint {
 
 	@Resource
-	private ValidatorService validatorService;
-
-	@Resource
 	private RoomRepository roomRepository;
 
 	@Resource
@@ -32,14 +29,7 @@ public class RegistrationEndpointImpl implements RegistrationEndpoint {
 
 	@Override
 	public Room registerRoom(Room room) {
-		List<String> problems = validatorService.validate(room);
-		if (problems != null && !problems.isEmpty()) {
-			throw CustomException.getCMSException(problems);
-		}
-
-		roomRepository.save(room);
-
-		return room;
+		return roomRepository.save(room);
 	}
 
 	@Override
@@ -48,7 +38,7 @@ public class RegistrationEndpointImpl implements RegistrationEndpoint {
 	}
 
 	@Override
-	public Room setTemperature(Integer roomId, Integer temperature) {
+	public void setTemperature(Integer roomId, Integer temperature) {
 
 		Room room = roomRepository.findOne(Long.valueOf(roomId));
 		if (room == null) {
@@ -57,7 +47,8 @@ public class RegistrationEndpointImpl implements RegistrationEndpoint {
 
 		Temperature tempObj = new Temperature(Double.valueOf(temperature.intValue()));
 		temperatureService.setTemperature(room, tempObj);
-		return null;
+
+		return;
 	}
 
 }

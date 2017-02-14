@@ -3,8 +3,6 @@ package me.puneetghodasara.validation.validator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import me.puneetghodasara.validation.model.Temperature;
-
 public class TemperatureValidator implements ConstraintValidator<ValidTemperature, Temperature> {
 
 	private static final String profile = "WINTER";
@@ -15,7 +13,7 @@ public class TemperatureValidator implements ConstraintValidator<ValidTemperatur
 
 	@Override
 	public boolean isValid(Temperature value, ConstraintValidatorContext context) {
-
+		context.disableDefaultConstraintViolation();
 		if (value == null) {
 			context.buildConstraintViolationWithTemplate("Temperature can not be null.")
 					.addConstraintViolation();

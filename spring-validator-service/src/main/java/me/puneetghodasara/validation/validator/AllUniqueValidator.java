@@ -36,6 +36,7 @@ public class AllUniqueValidator implements ConstraintValidator<AllUnique, List<?
 				Object fValue = field.get(aValue);
 
 				if (fieldValues.contains(fValue)) {
+					context.disableDefaultConstraintViolation();
 					ConstraintViolationBuilder template = context.buildConstraintViolationWithTemplate(
 							"Values of field " + field.getName() + " are not unique across collection.");
 					template.addConstraintViolation();

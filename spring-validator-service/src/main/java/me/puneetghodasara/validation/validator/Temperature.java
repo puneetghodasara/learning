@@ -1,4 +1,4 @@
-package me.puneetghodasara.validation.model;
+package me.puneetghodasara.validation.validator;
 
 import javax.validation.constraints.NotNull;
 

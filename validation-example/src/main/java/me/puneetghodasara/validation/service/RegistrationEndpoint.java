@@ -2,6 +2,8 @@ package me.puneetghodasara.validation.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -27,7 +29,7 @@ public interface RegistrationEndpoint {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Room registerRoom(Room room);
+	public Room registerRoom(@Valid Room room);
 
 	/**
 	 * List all rooms
@@ -50,5 +52,5 @@ public interface RegistrationEndpoint {
 	@Path("/{id}/temp/{temp}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Room setTemperature(@PathParam("id") Integer roomId, @PathParam("temp") Integer temperature);
+	public void setTemperature(@PathParam("id") Integer roomId, @NotNull @PathParam("temp") Integer temperature);
 }

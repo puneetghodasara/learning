@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -20,11 +21,12 @@ import org.hibernate.validator.constraints.Range;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
-
-import me.puneetghodasara.validation.validator.AllUnique;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import me.puneetghodasara.validation.validator.AllUnique;
+import me.puneetghodasara.validation.validator.Temperature;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -49,7 +51,7 @@ public class Room {
 	@Pattern(regexp = "[A-Za-z0-9 ]*", message = "Invalid Name")
 	private String name;
 
-	@Past
+	@Past(message = "Date must be in past")
 	@NotNull
 	@JsonProperty("register")
 	private Date registerDate;
@@ -61,8 +63,16 @@ public class Room {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Equipment> equipments;
 
+	@Transient
+	@JsonIgnore
+	private Temperature temperature;
+
 	public String getName() {
 		return name;
+	}
+
+	public void setTemperature(Temperature t) {
+		this.temperature = t;
 	}
 
 }

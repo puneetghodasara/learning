@@ -25,8 +25,9 @@ public class CustomValidationException implements ExceptionMapper<ConstraintViol
 	public Response toResponse(ConstraintViolationException exception) {
 		List<String> message = exception.getConstraintViolations()
 				.stream()
-				.map(cv -> cv.getPropertyPath()
-						.toString() + cv.getMessage())
+				.map(cv -> /*
+							 * cv.getPropertyPath() .toString() +
+							 */ cv.getMessage())
 				.collect(Collectors.toList());
 
 		CustomException convertedException = CustomException.getCMSException(message);

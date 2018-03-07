@@ -40,7 +40,7 @@ class OuterClass {
 	}
 
 	/**
-	 * A static nested class <br>
+	 * A non-static nested class <br>
 	 * 1) It CAN NOT have static variables <br>
 	 * 2) It can access all types of variable from container class (Outer class)
 	 *
@@ -67,8 +67,9 @@ class AnotherClass {
 
 	OuterClass outerClass = new OuterClass();
 
-	// A way of instantiate Static Inner class.
+	// Two way of instantiate Static Inner class.
 	OuterClass.StaticInnerClass ocStaticInnerClass = new OuterClass.StaticInnerClass();
+	OuterClass.StaticInnerClass ocStaticInnerClass = OuterClass.StaticInnerClass();
 
 	// Two ways of instantiate inner classes. It requires object of outer class
 	OuterClass.InnerClass ocInnerClass = outerClass.new InnerClass();

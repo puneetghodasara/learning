@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="jersey-boot-runner" />
+        <module name="learning-scope" />
         <module name="spring-validation-service" />
         <module name="student-db-service" />
         <module name="student-rest-service" />
@@ -15,6 +16,7 @@
     <bytecodeTargetLevel>
       <module name="cache-example" target="1.5" />
       <module name="jersey-boot-runner" target="1.8" />
+      <module name="learning-scope" target="1.8" />
       <module name="microservice-example" target="1.8" />
       <module name="parent-pom" target="1.8" />
       <module name="spring-validation-service" target="1.8" />

@@ -41,5 +41,6 @@
 
     <modules>
         <module>microservice-example</module>
+        <module>learning-scope</module>
     </modules>
 </project>

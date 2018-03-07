@@ -42,5 +42,8 @@
     <modules>
         <module>microservice-example</module>
         <module>learning-scope</module>
+        <module>learning-deadlock</module>
     </modules>
+
+
 </project>

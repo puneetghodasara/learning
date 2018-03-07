@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/microservice-example/jersey-boot-runner/jersey-boot-runner.iml" filepath="$PROJECT_DIR$/microservice-example/jersey-boot-runner/jersey-boot-runner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservice-example/microservice-example.iml" filepath="$PROJECT_DIR$/microservice-example/microservice-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-pom.iml" filepath="$PROJECT_DIR$/parent-pom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservice-example/spring-validation-service/spring-validation-service.iml" filepath="$PROJECT_DIR$/microservice-example/spring-validation-service/spring-validation-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservice-example/student-db-service/student-db-service.iml" filepath="$PROJECT_DIR$/microservice-example/student-db-service/student-db-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservice-example/student-rest-service/student-rest-service.iml" filepath="$PROJECT_DIR$/microservice-example/student-rest-service/student-rest-service.iml" />
+    </modules>
+  </component>
+</project>
